@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consulta de Pescados</title>
 </head>
 <body>
-    <h1>stock pescaderia</h1>
-    
 
-    <script src="array.js"></script>
-    <script src="stock.js"></script>
+<div>
+    <label for="menu">¿Qué te gustaría ver?</label>
+    <select id="menu">
+        <option value="1">Urgencia de compra</option>
+        <option value="2">Nombres de pescados</option>
+        <option value="3">Cantidad de pescados</option>
+        <option value="0">Salir</option>
+    </select>
+    <button id="boton">Consultar</button>
+</div>
+
+<div id="output"></div>
+
+<script src="array.js"></script>
+<script src="stock.js"></script>
+
 </body>
-
 </html>
