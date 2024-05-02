@@ -1,27 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Consulta de Pescados</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Pescados</title>
 </head>
 <body>
+    <h1>Compra de Pescados</h1>
 
-<div>
-    <label for="menu">¿Qué te gustaría ver?</label>
-    <select id="menu">
-        <option value="1">Urgencia de compra</option>
-        <option value="2">Nombres de pescados</option>
-        <option value="3">Cantidad de pescados</option>
-        <option value="0">Salir</option>
-    </select>
-    <button id="boton">Consultar</button>
-</div>
+    <div id="menu">
+        <p>¿Qué te gustaría ver?</p>
+        <button onclick="verUrgenciaCompra()">Urgencia de compra</button>
+        <button onclick="verNombresPescados()">Nombres de pescados</button>
+        <button onclick="verCantidadPescados()">Cantidad de pescados</button>
+        
+    </div>
 
-<div id="output"></div>
+    <div id="resultados"></div>
 
-<script src="array.js"></script>
-<script src="stock.js"></script>
-
+    <script src="array.js"></script>
+    <script src="stock.js"></script>
 </body>
 </html>

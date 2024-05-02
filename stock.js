@@ -1,67 +1,61 @@
 
 
-function datos() {
-    
+function verUrgenciaCompra() {
+    const comprar = parseInt(prompt("Ver urgencia de compra\n1- Excluyente\n2- Ocasional"));
+    urgencia(comprar);
+}
 
-    
-    const listapez = JSON.parse(localStorage.getItem("pescados1"));
+function verNombresPescados() {
+    const nombre = prompt("¿Qué pescado quieres comprar?");
+    tipoDePescado(nombre);
+}
 
-    if (listapez === null) {
-        console.log("No se encontraron datos en el almacenamiento local");
+function verCantidadPescados() {
+    cantidadPescado();
+}
+
+
+function urgencia(comprar) {
+    let filtro = [];
+    if (comprar === 1) {
+        filtro = pescados.filter(pescado => pescado.compra === "excluyente");
+    } else if (comprar === 2) {
+        filtro = pescados.filter(pescado => pescado.compra === "ocasional");
     } else {
-        console.log("Datos de pescados recuperados:", listapez);
+        mostrarResultado('Opción inválida');
+        return;
     }
+    mostrarTabla(filtro);
+}
 
-    const menu = parseInt(document.getElementById("menu").value);
-    let output = document.getElementById("output");
-    let result = "";
-
-
-    function urgencia(comprar) {
-        let filtro = [];
-        if (comprar === 1) {
-            filtro = listapez.filter(pescado => pescado.compra === "excluyente");
-        } else if (comprar === 2) {
-            filtro = listapez.filter(pescado => pescado.compra === "ocasional");
-        } else {
-            alert('Opción inválida');
-            return;
-        }
-        console.table(filtro);
-    }
-
-    function tipoDePescado(nombre) {
-        let pescado = listapez.find(pescado => pescado.nombre.toLowerCase() === nombre.toLowerCase());
-        if (pescado !== undefined) {
-            alert(`El pescado que buscabas:\nID: ${pescado.id}\nNOMBRE: ${pescado.nombre}\nCOMPRA: ${pescado.compra}`);
-        } else {
-            console.log("El nombre no es correcto");
-        }
-    }
-
-    function cantidadPescado() {
-        console.log(`Tipos de pescados restantes: ${listapez.length}`);
-    }
-
-    switch (menu) {
-        case 1:
-            let opcion = parseInt(prompt("Ver urgencia de compra \n1- Excluyente \n2- Ocasional"));
-            urgencia(opcion);
-            break;
-        
-        case 2:
-            let nombre = prompt("¿Qué pescado quieres comprar?");
-            tipoDePescado(nombre);
-            break;
-        
-        case 3:
-            cantidadPescado();
-            break;
-
-        default:
-            alert("¡Opción no válida!");
-            break;
+function tipoDePescado(nombre) {
+    let pescado = pescados.find(pescado => pescado.nombre.toLowerCase() === nombre.toLowerCase());
+    if (pescado !== undefined) {
+        mostrarResultado(`El pescado que buscabas:<br>ID: ${pescado.id}<br>NOMBRE: ${pescado.nombre}<br>COMPRA: ${pescado.compra}`);
+    } else {
+        mostrarResultado("El nombre no es correcto");
     }
 }
 
-document.getElementById("boton").addEventListener("click", datos);
+function cantidadPescado() {
+    mostrarResultado(`Tipos de pescados restantes: ${pescados.length}`);
+}
+
+function mostrarResultado(resultado) {
+    document.getElementById('resultados').innerHTML = resultado;
+}
+
+function mostrarTabla(datos) {
+    let table = '<table><tr><th>ID</th><th>Nombre</th><th>Compra</th></tr>';
+    datos.forEach(pescado => {
+        table += `<tr><td>${pescado.id}</td><td>${pescado.nombre}</td><td>${pescado.compra}</td></tr>`;
+    });
+    table += '</table>';
+    mostrarResultado(table);
+}
+
+localStorage.setItem("pescados1", JSON.stringify(pescados));
+
+ let pescadoObtenido = JSON.parse(localStorage.getItem("pescados1"));
+ console.log(pescadoObtenido);
+
