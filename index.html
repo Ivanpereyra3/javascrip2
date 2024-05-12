@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compra de Pescados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <h1>Compra de Pescados</h1>
 
     <div id="menu">
         <p>¿Qué te gustaría ver?</p>
-        <button onclick="verUrgenciaCompra()">Urgencia de compra</button>
-        <button onclick="verNombresPescados()">Nombres de pescados</button>
-        <button onclick="verCantidadPescados()">Cantidad de pescados</button>
-        
+        <button onclick="verUrgenciaCompra()" class="btn btn-primary">Urgencia de compra</button>
+        <button onclick="verNombresPescados()" class="btn btn-primary">Nombres de pescados</button>
+        <button onclick="verCantidadPescados()" class="btn btn-primary">Cantidad de pescados</button>
     </div>
 
     <div id="resultados"></div>
 
+    <div id="SinStock">
+        <h1>Pescados sin stock</h1>
+    </div>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="array.js"></script>
     <script src="stock.js"></script>
 </body>

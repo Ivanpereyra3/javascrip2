@@ -1,0 +1,26 @@
+
+
+ [
+    {
+        "id": 1,
+        "nombre": "filet de merluza",
+        "minimo": 20,
+        "compra": "excluyente",
+        "precioAnterior": "$19.80"
+    },
+    {
+        "id": 2,
+        "nombre": "rabas",
+        "minimo": 30,
+        "compra": "excluyente",
+        "precioAnterior": "$35.20"
+    },
+    {
+        "id": 3,
+        "nombre": "cangrejo",
+        "minimo": 2,
+        "compra": "ocasional",
+        "precioAnterior": "$12.10"
+    }
+    
+]
