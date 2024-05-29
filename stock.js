@@ -1,17 +1,15 @@
 
-
 function mostrarResultado(resultado) {
     document.getElementById('resultados').innerHTML = resultado;
 }
 
-
 function verUrgenciaCompra() {
-    const comprar = parseInt(prompt("Ver urgencia de compra\n1- Excluyente\n2- Ocasional"));
+    const comprar = parseInt(document.getElementById('urgencia').value);
     urgencia(comprar);
 }
 
 function verNombresPescados() {
-    const nombre = prompt("¿Qué pescado quieres comprar?");
+    const nombre = document.getElementById('nombrePescado').value;
     tipoDePescado(nombre);
 }
 
@@ -20,9 +18,8 @@ function verCantidadPescados() {
 }
 
 function VerSinStock() {
-    PescadoSinStock();
+    ObtenerSinStock();
 }
-
 
 function urgencia(comprar) {
     let filtro = [];
@@ -55,7 +52,6 @@ function tipoDePescado(nombre) {
             text: "El nombre no es correcto",
         });
         mostrarResultado("El nombre no es correcto");
-
     }
 }
 
@@ -69,10 +65,10 @@ function ImagenPescado(nombrePescado) {
             return 'https://i.pinimg.com/236x/55/9d/f3/559df36ca00e554dc512c38ea4edfc08.jpg';
         case 'surubi':
             return 'https://www.magyp.gob.ar/sitio/areas/pesca_continental/especies/surubi.jpg';
-       
+        default:
+            return '';
     }
 }
-
 
 function cantidadPescado() {
     Swal.fire({
@@ -80,51 +76,33 @@ function cantidadPescado() {
         text: `${pescados.length}` + " tipos de pescados",
         icon: "success",
     });
-    
     mostrarResultado(`Tipos de pescados restantes: ${pescados.length}`);
 }
 
-
-
-
-function mostrarResultado(resultado) {
-    document.getElementById('resultados').innerHTML = resultado;
-}
-
 function mostrarTabla(datos) {
-    let table = '<table><tr><th>ID</th><th>Nombre</th><th>Compra</th></tr>';
+    let table = '<table class="table table-striped"><thead><tr><th>ID</th><th>Nombre</th><th>Compra</th></tr></thead><tbody>';
     datos.forEach(pescado => {
         table += `<tr><td>${pescado.id}</td><td>${pescado.nombre}</td><td>${pescado.compra}</td></tr>`;
     });
-    table += '</table>';
+    table += '</tbody></table>';
     mostrarResultado(table);
 }
 
 function ObtenerSinStock() {
     const SinStock = './user.json';
     fetch(SinStock)
-        .then(SinStock => SinStock.json())
+        .then(response => response.json())
         .then(datos => {
+            let sinStockHTML = '<table class="table table-striped"><thead><tr><th>Nombre</th><th>Precio Anterior</th></tr></thead><tbody>';
             datos.forEach(faltante => {
-                document.getElementById("SinStock").innerHTML += `
-                <tr>
-                <td>${faltante.nombre}</td>
-            </tr>
-            <tr>
-                <td>${faltante.precioAnterior}</td>
-            </tr>`
+                sinStockHTML += `<tr><td>${faltante.nombre}</td><td>${faltante.precioAnterior}</td></tr>`;
             });
+            sinStockHTML += '</tbody></table>';
+            document.getElementById("SinStock").innerHTML = sinStockHTML;
         })
-        .catch(error => console.log('Error al obtener los datos:'));
+        .catch(error => console.log('Error al obtener los datos:', error));
 }
 
-
-
-
-    ObtenerSinStock();
-
 localStorage.setItem("pescados1", JSON.stringify(pescados));
-
- let pescadoObtenido = JSON.parse(localStorage.getItem("pescados1"));
- console.log(pescadoObtenido);
-
+let pescadoObtenido = JSON.parse(localStorage.getItem("pescados1"));
+console.log(pescadoObtenido);

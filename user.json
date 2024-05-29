@@ -17,7 +17,7 @@
     },
     {
         "id": 3,
-        "nombre": "cangrejo",
+        "nombre": "pulpo",
         "minimo": 2,
         "compra": "ocasional",
         "precioAnterior": "$12.10"
